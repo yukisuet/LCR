@@ -118,7 +118,7 @@ $$
 - The t-distribution is a type of curve used in statistics, just like the bell-shaped 🔔 normal distribution.
 - The t-distribution helps determine how "far" from zero is sufficiently far to confidently reject the null hypothesis.
 - By comparing $t$ to critical values from the t-distribution, we can determine whether the beta coefficient is likely due to chance or if it represents a true relationship between the predictor and the outcome.
-![bg right:40% w:600](./images/t_distribution.png)
+![bg right:40% w:500](./images/t_distribution.png)
 ---
 ![bg right:50% w:600](./images/t_sig.png)
 - The t-distribution is used to determine if the t-statistic ($t$) is large enough to reject the null hypothesis.
@@ -204,7 +204,7 @@ We perform separate t-tests for each $\beta$ coefficient to determine if it diff
 - The F-distribution is commonly used in statistics to compare how much better a full model fits the data compared to a simpler model.
 - The F-distribution is **right-skewed**, meaning it has a long tail on the right side, and the value of F is always positive.
 
-![bg right:40% w:520](./images/f_distribution.png)
+![bg right:40% w:500](./images/f_distribution.png)
 
 ---
 - We use the F-statistic, which is calculated from the model, to compare it against critical values from the F-distribution to decide whether the full model is a better fit for the data.
@@ -240,7 +240,7 @@ You can test these assumptions **after** running the model
 
 The horizontal line at zero shows where residuals should center. If the points are randomly scattered around it, homoscedasticity is met. A funnel shape suggests a violation of homoscedasticity.
 
-![bg right:50% w:660](./images/residuals.png)
+![bg right:50% w:600](./images/residuals.png)
 
 ---
 #### Q-Q Plot 
@@ -248,7 +248,7 @@ A **Q-Q plot** checks if the residuals follow a normal distribution.
 
 - **Straight line**: Residuals are approximately normal, satisfying the normality assumption.
 - **Bend away from the line**: Residuals are skewed or have heavy tails, suggesting a violation of normality.
-![bg right:50% w:660](./images/qqplot.png)
+![bg right:50% w:600](./images/qqplot.png)
 ---
 ## `Putting it all together`
 ### `statistical testing in Python`
