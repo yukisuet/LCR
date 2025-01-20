@@ -14,12 +14,12 @@ Linear Regression, Classification, and Resampling
 ---
 ##### Learning objectives
 - Define and interpret null and alternative hypotheses for linear regression.
-- Differentiate between the t-test (for individual coefficients) and F-test (for overall model fit).
+- Differentiate between the t-test (for individual coefficients) and the F-test (for overall model fit).
 - Perform hypotheses testing in Python to assess the significance of individual regression beta coefficients (including intercept) and assess the overall fit.
 
 ---
 #### Hypothesis testing
-- Hypothesis testing is a method used to make decisions or inferences about a population based on sample data
+- Hypothesis testing is a method used to make decisions or inferences about a population based on sample data.
 - It helps determine if the observed data provides enough evidence to support a specific claim or reject it.
 - For example, *is there a relationship between two variables?*
   - Between the size of a house in Sacramento and its sale price
@@ -28,13 +28,13 @@ Linear Regression, Classification, and Resampling
 #### Null and Alternative Hypotheses
 - When conducting statistical inference, we evaluate two competing hypotheses:
   
-  1. Null Hypothesis ($H_0$) : The hypothesis we formally test. It typically represents "no effect" or "no difference". The null hypothesis is what we assume to be true.  
+  1. Null Hypothesis ($H_0$): The hypothesis we formally test. It typically represents "no effect" or "no difference". The null hypothesis is what we assume to be true.  
   2. Alternative Hypothesis ($H_1$): The hypothesis that is contradictory to $H_0$ and of particular interest in our research. 
 
 - **Important**: We cannot prove any hypothesis ($H_0$ or $H_1$) is **true**. Instead:
 
-  1.  If our data is not consistent with the $H_0$ being true, we reject the $H_0$ in favour of $H_1$ (though this doesnt mean $H_1$ is *true*, rather we have evidence against the null $H_0$)
-  2.  If our data is consistent with the $H_0$ being true, we *cannot* reject the $H_0$. This is **not the same thing as accepting the $H_0$**
+  1.  If our data is inconsistent with the null hypothesis ($H_0$), we reject $H_0$ in favor of the alternative hypothesis ($H_1$). However, this does not imply that $H_1$ is true; rather, it indicates that we have evidence against $H_0$.
+  2.  If our data is consistent with the null hypothesis ($H_0$), we cannot reject $H_0$. **This is not the same as accepting $H_0$.**
 ---
 
 #### Recap of Linear Regression Equation
@@ -46,9 +46,13 @@ $$
 $$
 
   where:
+  
   $\text{y}$ is the response variable.
- $\beta_0$ is the vertical intercept.
+  
+  $\beta_0$ is the vertical intercept.
+  
   $\beta_1$ is the slope of the predictor
+  
   $\text{x}$ is the predictor (e.g., house size)
   
 
@@ -65,14 +69,14 @@ $$
 ---
 
 #### Hypothesis test for coefficients
-One question we may ask: *Is there a relationship between size of house and the house price?*
+One question we may ask: *Is there a relationship between the size of the house and the house price?*
 We can address this question by testing whether the regression coefficient $\beta_1$ is sufficiently far enough from $0$.
 
-- $H_0 : \beta_1 = 0$ meaning there is no relationship between house size and the price 
+- $H_0: \beta_1 = 0$ meaning there is no relationship between house size and the price 
   
-- $H_1 : \beta_1 \neq 0$ meaning there is a relationship between the house size and price
+- $H_1: \beta_1 \neq 0$ meaning there is a relationship between the house size and price
 
-Essentially, we have 2 competing hypothesis: 
+Essentially, we have 2 competing hypotheses: 
 -  $H_0 : \beta_1 = 0$ vs. $H_1 : \beta_1 \neq 0$
 
 
@@ -96,9 +100,8 @@ Let's assume we have a regression model where house type (Residential, Condo, Mu
 In order to test the null hypothesis, we need to determine whether $\beta_1$ is sufficiently *far* enough from $0$.
 
 To test this, we use the **t-statistic**
-$$
-t = \frac{\hat{\beta_1} - 0}{SE(\hat{\beta_1})}
-$$
+$$t = \frac{\hat{\beta_1} - 0}{SE(\hat{\beta_1})}$$
+
 - $\hat{\beta_1}$: Estimated coefficient for the predictor
 - $SE(\hat{\beta_1})$: Standard error of the estimated coefficient
 - $0$: The value under the null hypothesis (*recall* $H_0 : \beta_1 = 0$)
@@ -107,7 +110,7 @@ $$
 #### What Does "Sufficiently Far from 0" Mean?
 
 - Here, $0$ represents the value under the null hypothesis
-- The $\text{t}$ statisic measures how *far* $\beta_1$ is from $0$ in terms of standard errors:
+- The $\text{t}$ statisic measures how *far* $\beta_1$ is from $0$, expressed in terms of standard errors:
   - Large $|\text{t}|$: $\beta_1$ is far from $0$. Evidence against $H_0$
   - Small $|\text{t}|$: $\beta_1$ is close to $0$. Data are consistent with $H_0$
 - The exact threshold for what is considered "far" enough depends on the **sample size**  and the **significance level $\alpha$** of the test (typically set to $0.05$).
@@ -116,19 +119,19 @@ $$
 ---
 #### What is the t-distribution?
 - The t-distribution is a type of curve used in statistics, just like the bell-shaped 🔔 normal distribution.
-- The t-distribution helps determine how "far" from zero is sufficiently far to confidently reject the null hypothesis.
-- By comparing $t$ to critical values from the t-distribution, we can determine whether the beta coefficient is likely due to chance or if it represents a true relationship between the predictor and the outcome.
+- The t-distribution helps determine how "far" from zero is sufficiently far to reject the null hypothesis.
+- By comparing $t$ to critical values from the t-distribution, we can determine whether the beta coefficient is likely due to chance or if there is a statistically significant relationship between the predictor and the outcome.
 ![bg right:40% w:500](./images/t_distribution.png)
 ---
 ![bg right:50% w:600](./images/t_sig.png)
 - The t-distribution is used to determine if the t-statistic ($t$) is large enough to reject the null hypothesis.
-- Red dashed line represents the $t$ value calculated for the estimated beta coefficient.
+- The red dashed line represents the $t$ value calculated for the estimated beta coefficient.
 - The area shaded in red represents the rejection region, where we would reject the null hypothesis if our t-statistic lies there.
 
 ---
 #### Multivariable linear regression
 - We can extend our model to include multiple predictors! Each predictor variable *may* give us new information to help create our model. 
-- For example, lets say we now want to include both house size and number of bedrooms as predictors in our model
+- For example, let's say we now want to include both house size and number of bedrooms as predictors in our model
 
 $$
 \text{y} = \beta_0 + \beta_1(x_1) + \beta_2(x_2)
@@ -136,7 +139,7 @@ $$
 
   where:
   $\text{y}$ is the response variable.
- $\beta_0$ is the vertical intercept.
+  $\beta_0$ is the vertical intercept.
   $\beta_1$ is the slope for predictor 1 (e.g., ($x_1$) house size)
   $\beta_2$ is the slope for predictor 2 (e.g., ($x_2$) number of bedrooms)
 
@@ -145,8 +148,8 @@ $$
 #### Hypothesis test for multiple coefficients
 For multiple predictors, the process is the same! 
 We perform separate t-tests for each $\beta$ coefficient to determine if it differs significantly from $0$.
-1. Null Hypothesis ($H_0$) : The predictor has no effect on the outcome
-2. Alternative Hypothesis ($H_1$): The hypothesis that is contradictory to $H_0$. The predictor has an effect on the outcome
+1. Null Hypothesis ($H_0$): The predictor has no effect on the outcome.
+2. Alternative Hypothesis ($H_1$): The hypothesis that is contradictory to $H_0$. The predictor has an effect on the outcome.
 
 - $H_0 : \beta_1 = 0, \beta_2 = 0...$ 
 - $H_0 : \beta_1 \neq 0, \beta_2 \neq 0...$ 
@@ -154,7 +157,7 @@ We perform separate t-tests for each $\beta$ coefficient to determine if it diff
 ---
 #### The F-Statistic for Testing Multiple Predictors in Linear Regression
 
-- While the t-test is used to test significance of **individual** $\beta$ coefficients, the **F-statistic** is used to test the **overall signfiicance** of the regression model with multiple predictors
+- While the t-test is used to test significance of **individual** $\beta$ coefficients, the **F-statistic** is used to test the **overall signficance** of the regression model with multiple predictors.
 - The F-statistic test tells us if the model *as a whole* is significantly better than a model with no predictors at all (intercept model only). 
 
 ---
@@ -180,13 +183,13 @@ We perform separate t-tests for each $\beta$ coefficient to determine if it diff
 
 - It compares the explained variance in the full model to the unexplained variance.
 
-  - Explained Variance: Variability in $y$ explained by the predictors in the full model.
+  - Explained Variance: Variability in $y$ is explained by the predictors in the full model.
   - Unexplained Variance: Variability in $y$ that is not explained by the predictors, representing the error or residuals
-  $$
-  F = \frac{\text{Unexplained Variance}}{\text{Explained Variance}}
-  $$
+    
+  $$F = \frac{\text{Unexplained Variance}}{\text{Explained Variance}}$$
+
   - Large $\text{F}$: indicates the full model significantly improves the prediction of y compared to the reduced model. Evidence against $H_0$
-  - Small $\text{F}$: indicates the model does not explain much more variance than just using the mean of $y$ . Data are consistent with $H_0$
+  - Small $\text{F}$: indicates the model does not explain much more variance than just using the mean of $y$. Data are consistent with $H_0$
 
 ---
 
@@ -251,4 +254,4 @@ A **Q-Q plot** checks if the residuals follow a normal distribution.
 ![bg right:50% w:600](./images/qqplot.png)
 ---
 ## `Putting it all together`
-### `statistical testing in Python`
+### `Statistical testing in Python`
