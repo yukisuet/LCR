@@ -15,7 +15,7 @@ Linear Regression, Classification, and Resampling
 ##### Learning objectives
 - Define and interpret null and alternative hypotheses for linear regression.
 - Differentiate between the t-test (for individual coefficients) and the F-test (for overall model fit).
-- Perform hypotheses testing in Python to assess the significance of individual regression beta coefficients (including intercept) and assess the overall fit.
+- Perform hypothesis testing in Python to evaluate the significance of individual regression beta coefficients (including intercept) and assess the overall fit.
 
 ---
 #### Hypothesis testing
@@ -152,7 +152,7 @@ We perform separate t-tests for each $\beta$ coefficient to determine if it diff
 2. Alternative Hypothesis ($H_1$): The hypothesis that is contradictory to $H_0$. The predictor has an effect on the outcome.
 
 - $H_0 : \beta_1 = 0, \beta_2 = 0...$ 
-- $H_0 : \beta_1 \neq 0, \beta_2 \neq 0...$ 
+- $H_1 : \beta_1 \neq 0, \beta_2 \neq 0...$ 
 
 ---
 #### The F-Statistic for Testing Multiple Predictors in Linear Regression
@@ -167,7 +167,7 @@ We perform separate t-tests for each $\beta$ coefficient to determine if it diff
 2. Alternative Hypothesis ($H_1$): At least **ONE** of the predictors significantly affect the outcome.  
 
 - $H_0 : \beta_1 = 0, \beta_2 = 0...$ 
-- $H_0 :$ At least one $\beta_i \neq 0$ 
+- $H_1 :$ At least one $\beta_i \neq 0$ 
 ---
 #### How the F-test works
 - The F-statistic is calculated by comparing two models:
@@ -186,14 +186,14 @@ We perform separate t-tests for each $\beta$ coefficient to determine if it diff
   - Explained Variance: Variability in $y$ is explained by the predictors in the full model.
   - Unexplained Variance: Variability in $y$ that is not explained by the predictors, representing the error or residuals
     
-  $$F = \frac{\text{Unexplained Variance}}{\text{Explained Variance}}$$
+  $$F = \frac{\text{Explained Variance}}{\text{Unexplained Variance}}$$
 
   - Large $\text{F}$: indicates the full model significantly improves the prediction of y compared to the reduced model. Evidence against $H_0$
   - Small $\text{F}$: indicates the model does not explain much more variance than just using the mean of $y$. Data are consistent with $H_0$
 
 ---
 
-#### What Does "Sufficiently Large Mean for F?
+#### What Does "Sufficiently Large" Mean for F?
 
 
 - The exact threshold for what is considered "large" depends on the **sample size** and the **significance level**, typically set to $0.05$.
