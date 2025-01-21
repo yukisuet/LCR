@@ -28,35 +28,29 @@ Linear Regression, Classification, and Resampling
 #### Null and Alternative Hypotheses
 - When conducting statistical inference, we evaluate two competing hypotheses:
   
-  1. Null Hypothesis ($H_0$): The hypothesis we formally test. It typically represents "no effect" or "no difference". The null hypothesis is what we assume to be true.  
-  2. Alternative Hypothesis ($H_1$): The hypothesis that is contradictory to $H_0$ and of particular interest in our research. 
+  1. Null hypothesis ($H_0$): The hypothesis we formally test. It typically represents "no effect" or "no difference". The null hypothesis is what we assume to be true.  
+  2. Alternative hypothesis ($H_1$): The hypothesis that is contradictory to $H_0$ and of particular interest in our research. 
 
 - **Important**: We cannot prove any hypothesis ($H_0$ or $H_1$) is **true**. Instead:
 
-  1.  If our data is inconsistent with the null hypothesis ($H_0$), we reject $H_0$ in favor of the alternative hypothesis ($H_1$). However, this does not imply that $H_1$ is true; rather, it indicates that we have evidence against $H_0$.
-  2.  If our data is consistent with the null hypothesis ($H_0$), we cannot reject $H_0$. **This is not the same as accepting $H_0$.**
+  1.  If our data are inconsistent with the null hypothesis ($H_0$), we reject $H_0$ in favor of the alternative hypothesis ($H_1$). However, this does not imply that $H_1$ is true; rather, it indicates that we have evidence against $H_0$.
+  2.  If our data are consistent with the null hypothesis ($H_0$), we cannot reject $H_0$. **This is not the same as accepting $H_0$.**
 ---
 
 #### Recap of Linear Regression Equation
 - The equation for the straight line in simple linear regression is:
-  
-  
+
 $$
 \text{y} \approx \beta_0 + \beta_1 \text{x}
 $$
 
-  where:
+where: 
+- $\text{y}$ is the response variable.
+- $\beta_0$ is the vertical intercept.
+- $\beta_1$ is the slope of the predictor
+- $\text{x}$ is the predictor (e.g., house size)
   
-  $\text{y}$ is the response variable.
-  
-  $\beta_0$ is the vertical intercept.
-  
-  $\beta_1$ is the slope of the predictor
-  
-  $\text{x}$ is the predictor (e.g., house size)
-  
-
-- Finding the line of best fit involves determining coefficients $\beta_0$ and $\beta_1$ that define the line.
+Finding the line of best fit involves determining coefficients $\beta_0$ and $\beta_1$ that define the line.
 
 ---
  ##### Example dataset
@@ -72,23 +66,23 @@ $$
 One question we may ask: *Is there a relationship between the size of the house and the house price?*
 We can address this question by testing whether the regression coefficient $\beta_1$ is sufficiently far enough from $0$.
 
-- $H_0: \beta_1 = 0$ meaning there is no relationship between house size and the price 
+- $H_0: \beta_1 = 0$ meaning there is no relationship between house size and the price.
   
-- $H_1: \beta_1 \neq 0$ meaning there is a relationship between the house size and price
+- $H_1: \beta_1 \neq 0$ meaning there is a relationship between the house size and price.
 
-Essentially, we have 2 competing hypotheses: 
+Essentially, we have two competing hypotheses: 
 -  $H_0 : \beta_1 = 0$ vs. $H_1 : \beta_1 \neq 0$
 
 
 ---
 #### Hypothesis test for coefficients when predictors are categorical 
 
-*Note.* When using categorical predictors in a regression model, the interpretation of coefficients differs from that of continuous predictors. 
+*Note:* When using categorical predictors in a regression model, the interpretation of coefficients differs from that of continuous predictors. 
 - Here, $\beta$ coefficients tell us the impact of each category (relative to the reference category) on the outcome.
 - This is done by testing if the $\beta$ coefficients for the categories are significantly different from zero.
 ---
 Let's assume we have a regression model where house type (Residential, Condo, Multi-Family) is our predictor variable and house price is the outcome variable.
-- Residential (our reference category) will not have a coefficient because it’s the baseline.
+- Residential (our reference category) will not have a coefficient because it is the baseline.
 - Condo and Multi-Family will have their own coefficients.
 - For example, we have:
   - $\beta_0$: Intercept (average house price for Residential). This represents the average house price for the Residential category (since it is the reference group).
@@ -99,18 +93,20 @@ Let's assume we have a regression model where house type (Residential, Condo, Mu
 #### Hypothesis test for coefficients
 In order to test the null hypothesis, we need to determine whether $\beta_1$ is sufficiently *far* enough from $0$.
 
-To test this, we use the **t-statistic**
+To test this, we use the **t-statistic**: 
 $$t = \frac{\hat{\beta_1} - 0}{SE(\hat{\beta_1})}$$
 
 - $\hat{\beta_1}$: Estimated coefficient for the predictor
 - $SE(\hat{\beta_1})$: Standard error of the estimated coefficient
 - $0$: The value under the null hypothesis (*recall* $H_0 : \beta_1 = 0$)
-- **Note:** The hat represents our estimate of the parameter
+
+**Note:** The hat represents our estimate of the parameter
+
 ---
 #### What Does "Sufficiently Far from 0" Mean?
 
 - Here, $0$ represents the value under the null hypothesis
-- The $\text{t}$ statisic measures how *far* $\beta_1$ is from $0$, expressed in terms of standard errors:
+- The $\text{t}$ statistic measures how *far* $\beta_1$ is from $0$, expressed in terms of standard errors:
   - Large $|\text{t}|$: $\beta_1$ is far from $0$. Evidence against $H_0$
   - Small $|\text{t}|$: $\beta_1$ is close to $0$. Data are consistent with $H_0$
 - The exact threshold for what is considered "far" enough depends on the **sample size**  and the **significance level $\alpha$** of the test (typically set to $0.05$).
@@ -148,8 +144,8 @@ $$
 #### Hypothesis test for multiple coefficients
 For multiple predictors, the process is the same! 
 We perform separate t-tests for each $\beta$ coefficient to determine if it differs significantly from $0$.
-1. Null Hypothesis ($H_0$): The predictor has no effect on the outcome.
-2. Alternative Hypothesis ($H_1$): The hypothesis that is contradictory to $H_0$. The predictor has an effect on the outcome.
+1. Null hypothesis ($H_0$): The predictor has no effect on the outcome.
+2. Alternative hypothesis ($H_1$): The hypothesis that is contradictory to $H_0$. The predictor has an effect on the outcome.
 
 - $H_0 : \beta_1 = 0, \beta_2 = 0...$ 
 - $H_1 : \beta_1 \neq 0, \beta_2 \neq 0...$ 
@@ -157,14 +153,14 @@ We perform separate t-tests for each $\beta$ coefficient to determine if it diff
 ---
 #### The F-Statistic for Testing Multiple Predictors in Linear Regression
 
-- While the t-test is used to test significance of **individual** $\beta$ coefficients, the **F-statistic** is used to test the **overall signficance** of the regression model with multiple predictors.
+- While the t-test is used to test significance of **individual** $\beta$ coefficients, the **F-statistic** is used to test the **overall significance** of the regression model with multiple predictors.
 - The F-statistic test tells us if the model *as a whole* is significantly better than a model with no predictors at all (intercept model only). 
 
 ---
 #### Null and Alternative Hypotheses for the F-test
 
-1. Null Hypothesis ($H_0$) : **ALL** predictors have no effect on the outcome
-2. Alternative Hypothesis ($H_1$): At least **ONE** of the predictors significantly affect the outcome.  
+1. Null hypothesis ($H_0$) : **ALL** predictors have no effect on the outcome
+2. Alternative hypothesis ($H_1$): At least **ONE** of the predictors significantly affects the outcome.  
 
 - $H_0 : \beta_1 = 0, \beta_2 = 0...$ 
 - $H_1 :$ At least one $\beta_i \neq 0$ 
@@ -204,7 +200,7 @@ We perform separate t-tests for each $\beta$ coefficient to determine if it diff
 
 ---
 #### What is the F-distribution?
-- The F-distribution is commonly used in statistics to compare how much better a full model fits the data compared to a simpler model.
+- The F-distribution is commonly used to compare how much better a full model fits the data compared to a simpler model.
 - The F-distribution is **right-skewed**, meaning it has a long tail on the right side, and the value of F is always positive.
 
 ![bg right:40% w:500](./images/f_distribution.png)
@@ -215,25 +211,25 @@ We perform separate t-tests for each $\beta$ coefficient to determine if it diff
 
 ---
 #### Key Assumptions in Linear Regression
-You can test these assumptions **before** running the model
+You can test these assumptions **before** running the model.
 
 1. **Linearity**: There’s a straight-line relationship between the predictor ($X$) and response ($Y$) variables.
    - You can visually check by plotting the data ($X$ vs. $Y$) to see if the relationship appears to be roughly linear.
 
 2. **Independence**: Data points should be independent of each other, meaning no correlation between errors from different observations.
-   - This assumption is usually inherent in how the data is collected. 
+   - This assumption is usually inherent in how the data are collected.
 
-3. **No or Little Multicollinearity**: In multiple regression, predictors shouldn’t be highly correlated with each other.
-   - You can check using techniques like  Variance Inflation Factor (VIF)
+3. **No or Little Multicollinearity**: In multiple regression, predictors should not be highly correlated with each other.
+   - You can check using techniques like Variance Inflation Factor (VIF).
 ---
 #### Key Assumptions in Linear Regression
-You can test these assumptions **after** running the model
+You can test these assumptions **after** running the model.
 
-4. **Homoscedasticity**: The spread of the errors should be constant across all values of ($X$). In other words, the error variation shouldn’t change as ($X$) changes.
-   - After fitting the model, you can plot the residuals (errors) against the fitted values (predicted Y values). If the spread of residuals is constant, the assumption holds. 
+4. **Homoscedasticity**: The spread of the errors should be constant across all values of ($X$). In other words, the error variation should not change as ($X$) changes.
+   - After fitting the model, you can plot the residuals (errors) against the fitted values (predicted $Y$ values). If the spread of residuals is constant, the assumption holds. 
 
-5. **Normality of Errors**: The errors should be roughly normally distributed, especially for accurate hypothesis testing.
-   - After fitting the model, you can use a Quantile-Quantile (Q-Q) plot to check if the residuals are approximately normally distributed. If the residuals deviate significantly from a straight line on the Q-Q plot, the assumption might be violated.
+5. **Normality of Errors**: The errors should be roughly normally distributed, especially for hypothesis testing.
+   - After fitting the model, you can use a Quantile-Quantile (Q-Q) plot to check if the residuals are approximately normally distributed. If the residuals deviate significantly from a straight line on the Q-Q plot, the assumption might be violated, although a violation is usually not a major concern.
 
 ---
 #### Residuals vs. Fitted Values Plot
