@@ -22,7 +22,7 @@ Linear Regression, Classification, and Resampling
 - Hypothesis testing is a method used to make decisions or inferences about a population based on sample data.
 - It helps determine if the observed data provides enough evidence to support a specific claim or reject it.
 - For example, *is there a relationship between two variables?*
-  - Between the size of a house in Sacramento and its sale price
+  - Between the size of a house in Sacramento and its sale price.
 
 ---
 #### Null and Alternative Hypotheses
@@ -47,8 +47,8 @@ $$
 where: 
 - $\text{y}$ is the response variable.
 - $\beta_0$ is the vertical intercept.
-- $\beta_1$ is the slope of the predictor
-- $\text{x}$ is the predictor (e.g., house size)
+- $\beta_1$ is the slope of the predictor.
+- $\text{x}$ is the predictor (e.g., house size).
   
 Finding the line of best fit involves determining coefficients $\beta_0$ and $\beta_1$ that define the line.
 
@@ -67,7 +67,6 @@ One question we may ask: *Is there a relationship between the size of the house 
 We can address this question by testing whether the regression coefficient $\beta_1$ is sufficiently far enough from $0$.
 
 - $H_0: \beta_1 = 0$ meaning there is no relationship between house size and the price.
-  
 - $H_1: \beta_1 \neq 0$ meaning there is a relationship between the house size and price.
 
 Essentially, we have two competing hypotheses: 
@@ -96,21 +95,21 @@ In order to test the null hypothesis, we need to determine whether $\beta_1$ is 
 To test this, we use the **t-statistic**: 
 $$t = \frac{\hat{\beta_1} - 0}{SE(\hat{\beta_1})}$$
 
-- $\hat{\beta_1}$: Estimated coefficient for the predictor
-- $SE(\hat{\beta_1})$: Standard error of the estimated coefficient
-- $0$: The value under the null hypothesis (*recall* $H_0 : \beta_1 = 0$)
+- $\hat{\beta_1}$: Estimated coefficient for the predictor.
+- $SE(\hat{\beta_1})$: Standard error of the estimated coefficient.
+- $0$: The value under the null hypothesis (*recall* $H_0 : \beta_1 = 0$).
 
-**Note:** The hat represents our estimate of the parameter
+**Note:** The hat represents our estimate of the parameter.
 
 ---
 #### What Does "Sufficiently Far from 0" Mean?
 
-- Here, $0$ represents the value under the null hypothesis
+- Here, $0$ represents the value under the null hypothesis.
 - The $\text{t}$ statistic measures how *far* $\beta_1$ is from $0$, expressed in terms of standard errors:
-  - Large $|\text{t}|$: $\beta_1$ is far from $0$. Evidence against $H_0$
-  - Small $|\text{t}|$: $\beta_1$ is close to $0$. Data are consistent with $H_0$
+  - Large $|\text{t}|$: $\beta_1$ is far from $0$. Evidence against $H_0$.
+  - Small $|\text{t}|$: $\beta_1$ is close to $0$. Data are consistent with $H_0$.
 - The exact threshold for what is considered "far" enough depends on the **sample size**  and the **significance level $\alpha$** of the test (typically set to $0.05$).
-  - we compare $|\text{t}|$ to the critical value corresponding to these levels of significance (this critical value is calculated under the t-distribution table, dependent on our sample size)
+  - We compare $|\text{t}|$ to the critical value corresponding to these levels of significance (this critical value is calculated under the t-distribution table, dependent on our sample size).
 
 ---
 #### What is the t-distribution?
